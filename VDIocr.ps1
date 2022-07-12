@@ -8,12 +8,12 @@ function Get-ScreenCapture
     }
     process {
         Start-Sleep -Milliseconds 250
-            $viewProc = Get-Process -Name 'vmware-view'
+        $viewProc = Get-Process -Name 'vmware-view'
             
-            [void] [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.VisualBasic")
-            [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
-            [Microsoft.VisualBasic.Interaction]::AppActivate($viewProc.MainWindowTitle)
-            [Windows.Forms.Sendkeys]::SendWait("%{PrtSc}")
+        [void] [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.VisualBasic")
+        [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+        [Microsoft.VisualBasic.Interaction]::AppActivate($viewProc.MainWindowTitle)
+        [Windows.Forms.Sendkeys]::SendWait("%{PrtSc}")
 
         Start-Sleep -Milliseconds 250
         $bitmap = [Windows.Forms.Clipboard]::GetImage()
