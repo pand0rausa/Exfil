@@ -20,16 +20,12 @@ function Get-ScreenCapture
         $ep = New-Object Drawing.Imaging.EncoderParameters
         $ep.Param[0] = New-Object Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality, [long]100)
         $screenCapturePathBase = "$HOME\ScreenCapture"
-        $c = 0
-        while (Test-Path "${screenCapturePathBase}${c}.jpg") {
-            $c++
-        }
-        $bitmap.Save("${screenCapturePathBase}${c}.jpg", $jpegCodec, $ep)
+        $bitmap.Save("${screenCapturePathBase}.jpg", $jpegCodec, $ep)
     }
 }
 Get-ScreenCapture
 
 Install-Module -Name PsOcr -Scope CurrentUser
-(Convert-PsoImageToText -Path $HOME\ScreenCapture0.jpg -Language en-US).text
+(Convert-PsoImageToText -Path $HOME\ScreenCapture.jpg -Language en-US).text
 
-rm $HOME\ScreenCapture0.jpg
+rm $HOME\ScreenCapture.jpg
